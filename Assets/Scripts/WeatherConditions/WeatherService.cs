@@ -74,6 +74,105 @@ public class ApiConfig
   public string Location;
 }
 
+[Serializable]
+public class ForecastResponse
+{
+    public Location location;
+    public Current current;
+    public Forecast forecast;
+
+    [Serializable]
+    public class Location
+    {
+        public string name;
+        public string region;
+        public string country;
+        public float lat;
+        public float lon;
+        public string tz_id;
+        public int localtime_epoch;
+        public string localtime;
+    }
+
+    [Serializable]
+    public class Current
+    {
+        public float temp_c;
+        public float temp_f;
+        public int is_day;
+        public int last_updated_epoch;
+        public string last_updated;
+        public Condition condition;
+        public float wind_mph;
+        public float wind_kph;
+        public int wind_degree;
+        public string wind_dir;
+        public int pressure_mb;
+        public float pressure_in;
+        public float precip_mm;
+        public float precip_in;
+        public int humidity;
+        public int cloud;
+        public float feelslike_c;
+        public float feelslike_f;
+        public float windchill_c;
+        public float windchill_f;
+        public float heatindex_c;
+        public float heatindex_f;
+        public float dewpoint_c;
+        public float dewpoint_f;
+        public float vis_km;
+        public float vis_miles;
+        public float uv;
+        public float gust_mph;
+        public float gust_kph;
+    }
+
+    [Serializable]
+    public class Forecast
+    {
+        public ForecastDay[] forecastday;
+    }
+
+    [Serializable]
+    public class ForecastDay
+    {
+        public string date;
+        public Day day;
+        public Hour[] hour;
+    }
+
+    [Serializable]
+    public class Day
+    {
+        public float maxtemp_c;
+        public float mintemp_c;
+        public float avgtemp_c;
+        public float maxwind_kph;
+        public float totalprecip_mm;
+        public int daily_chance_of_rain;
+        public Condition condition;
+    }
+
+    [Serializable]
+    public class Hour
+    {
+        public string time;
+        public float temp_c;
+        public int humidity;
+        public float wind_kph;
+        public Condition condition;
+    }
+
+    [Serializable]
+    public class Condition
+    {
+        public string text;
+        public string icon;
+        public int code;
+    }
+}
+
 public class WeatherApiConfigLoader
 {
   public static ApiConfig LoadWeatherApiConfig()
@@ -232,4 +331,36 @@ public class WeatherService : MonoBehaviour
       onComplete?.Invoke(cachedWeather);
     }
   }
+
+  public event Action<ForecastResponse> OnForecastUpdated;
+
+  public void FetchForecast(string city, int days = 3, Action<ForecastResponse> onComplete = null)
+  {
+      StartCoroutine(GetForecastCoroutine(city, days, onComplete));
+  }
+
+  private IEnumerator GetForecastCoroutine(string city, int days, Action<ForecastResponse> onComplete)
+  {
+      string url = $"https://api.weatherapi.com/v1/forecast.json?key={apiKey}&q={city}&days={days}&aqi=no&alerts=no";
+
+      using UnityWebRequest request = UnityWebRequest.Get(url);
+      yield return request.SendWebRequest();
+
+      if (request.result == UnityWebRequest.Result.Success)
+      {
+          string json = request.downloadHandler.text;
+
+          Debug.Log("WeatherAPI Response:\n" + json);
+
+          ForecastResponse forecastData = JsonUtility.FromJson<ForecastResponse>(json);
+          OnForecastUpdated?.Invoke(forecastData);
+          onComplete?.Invoke(forecastData);
+      }
+      else
+      {
+          Debug.LogError($"Forecast API Error: {request.error}\nResponse Code: {request.responseCode}");
+          onComplete?.Invoke(null);
+      }
+  }
+
 }
