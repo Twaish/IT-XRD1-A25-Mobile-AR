@@ -126,6 +126,10 @@ public class ForecastResponse
         public float uv;
         public float gust_mph;
         public float gust_kph;
+        public float short_rad;
+        public float diff_rad;
+        public float dni;
+        public float gti;
     }
 
     [Serializable]
@@ -138,30 +142,91 @@ public class ForecastResponse
     public class ForecastDay
     {
         public string date;
+        public long date_epoch;
         public Day day;
+        public Astro astro;
         public Hour[] hour;
+    }
+
+    [Serializable]
+    public class Astro
+    {
+        public string sunrise;
+        public string sunset;
+        public string moonrise;
+        public string moonset;
+        public string moon_phase;
+        public int moon_illumination;
+        public int is_moon_up;
+        public int is_sun_up;
     }
 
     [Serializable]
     public class Day
     {
         public float maxtemp_c;
+        public float maxtemp_f;
         public float mintemp_c;
+        public float mintemp_f;
         public float avgtemp_c;
+        public float avgtemp_f;
+        public float maxwind_mph;
         public float maxwind_kph;
         public float totalprecip_mm;
+        public float totalprecip_in;
+        public float totalsnow_cm;
+        public float avgvis_km;
+        public float avgvis_miles;
+        public int avghumidity;
+        public int daily_will_it_rain;
         public int daily_chance_of_rain;
+        public int daily_will_it_snow;
+        public int daily_chance_of_snow;
         public Condition condition;
+        public float uv;
     }
 
     [Serializable]
     public class Hour
     {
+        public long time_epoch;
         public string time;
         public float temp_c;
-        public int humidity;
-        public float wind_kph;
+        public float temp_f;
+        public int is_day;
         public Condition condition;
+        public float wind_mph;
+        public float wind_kph;
+        public int wind_degree;
+        public string wind_dir;
+        public int pressure_mb;
+        public float pressure_in;
+        public float precip_mm;
+        public float precip_in;
+        public float snow_cm;
+        public int humidity;
+        public int cloud;
+        public float feelslike_c;
+        public float feelslike_f;
+        public float windchill_c;
+        public float windchill_f;
+        public float heatindex_c;
+        public float heatindex_f;
+        public float dewpoint_c;
+        public float dewpoint_f;
+        public int will_it_rain;
+        public int chance_of_rain;
+        public int will_it_snow;
+        public int chance_of_snow;
+        public float vis_km;
+        public float vis_miles;
+        public float gust_mph;
+        public float gust_kph;
+        public float uv;
+        public float short_rad;
+        public float diff_rad;
+        public float dni;
+        public float gti;
     }
 
     [Serializable]
@@ -202,7 +267,7 @@ public class WeatherService : MonoBehaviour
   [SerializeField] private float debugPrecipitation;
   [SerializeField] private float debugWindKph;
   [SerializeField] private int debugWindDegree;
-
+  public HourlyWeatherSlider hourlyWeatherSlider;
   private WeatherResponse cachedWeather;
   private DateTime lastFetchTime;
 
@@ -351,6 +416,16 @@ public class WeatherService : MonoBehaviour
           string json = request.downloadHandler.text;
 
           Debug.Log("WeatherAPI Response:\n" + json);
+
+          // Pass the JSON string to the slider script before deserializing
+          if (hourlyWeatherSlider != null)
+          {
+              hourlyWeatherSlider.SetWeatherJsonData(json);
+          }
+          else
+          {
+              Debug.LogError("HourlyWeatherSlider reference is not set!");
+          }
 
           ForecastResponse forecastData = JsonUtility.FromJson<ForecastResponse>(json);
           OnForecastUpdated?.Invoke(forecastData);
