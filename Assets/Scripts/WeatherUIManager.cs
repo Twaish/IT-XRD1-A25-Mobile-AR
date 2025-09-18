@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class WeatherUIManager : MonoBehaviour
@@ -13,18 +14,28 @@ public class WeatherUIManager : MonoBehaviour
         weatherService.FetchForecast("London", 3);
     }
 
-    private void DisplayForecast(ForecastResponse forecast)
-    {
-        foreach (Transform child in contentParent)
-            Destroy(child.gameObject);
+    public Text forecastText;
 
-        foreach (var hour in forecast.forecast.forecastday[0].hour)
+    public void DisplayForecast(ForecastResponse forecast)
+    {
+        if (forecast?.forecast?.forecastday != null && forecast.forecast.forecastday.Length > 0)
         {
-            GameObject item = Instantiate(forecastItemPrefab, contentParent);
-            var texts = item.GetComponentsInChildren<TextMeshProUGUI>();
-            texts[0].text = hour.time;
-            texts[1].text = $"{hour.temp_c}°C";
-            texts[2].text = hour.condition.text;
+            ForecastResponse.ForecastDay today = forecast.forecast.forecastday[0];
+
+            string forecastInfo = $"Forecast for {today.date}:\n" +
+                                  $"Max Temp: {today.day.maxtemp_c}°C\n" +
+                                  $"Min Temp: {today.day.mintemp_c}°C\n" +
+                                  $"Condition: {today.day.condition.text}\n" +
+                                  $"Rain Chance: {today.day.daily_chance_of_rain}%";
+            
+            forecastText.text = forecastInfo;
+            Debug.Log("Forecast data successfully displayed.");
+        }
+        else
+        {
+            // Handle the case where no forecast data is available
+            forecastText.text = "No forecast data available.";
+            Debug.LogError("WeatherUIManager: No forecast data received or forecast array is empty.");
         }
     }
 }

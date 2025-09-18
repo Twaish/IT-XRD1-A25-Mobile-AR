@@ -399,43 +399,29 @@ public class WeatherService : MonoBehaviour
 
   public event Action<ForecastResponse> OnForecastUpdated;
 
-  public void FetchForecast(string city, int days = 3, Action<ForecastResponse> onComplete = null)
-  {
-      StartCoroutine(GetForecastCoroutine(city, days, onComplete));
-  }
+    public void FetchForecast(string location, int days = 3, Action<ForecastResponse> onComplete = null)
+    {
+        StartCoroutine(GetForecastCoroutine(location, days, onComplete));
+    }
 
-  private IEnumerator GetForecastCoroutine(string city, int days, Action<ForecastResponse> onComplete)
-  {
-      string url = $"https://api.weatherapi.com/v1/forecast.json?key={apiKey}&q={city}&days={days}&aqi=no&alerts=no";
+    private IEnumerator GetForecastCoroutine(string location, int days, Action<ForecastResponse> onComplete)
+    {
+        string url = $"https://api.weatherapi.com/v1/forecast.json?key={apiKey}&q={location}&days={days}&aqi=no&alerts=no";
 
-      using UnityWebRequest request = UnityWebRequest.Get(url);
-      yield return request.SendWebRequest();
+        using UnityWebRequest request = UnityWebRequest.Get(url);
+        yield return request.SendWebRequest();
 
-      if (request.result == UnityWebRequest.Result.Success)
-      {
-          string json = request.downloadHandler.text;
-
-          Debug.Log("WeatherAPI Response:\n" + json);
-
-          // Pass the JSON string to the slider script before deserializing
-          if (hourlyWeatherSlider != null)
-          {
-              hourlyWeatherSlider.SetWeatherJsonData(json);
-          }
-          else
-          {
-              Debug.LogError("HourlyWeatherSlider reference is not set!");
-          }
-
-          ForecastResponse forecastData = JsonUtility.FromJson<ForecastResponse>(json);
-          OnForecastUpdated?.Invoke(forecastData);
-          onComplete?.Invoke(forecastData);
-      }
-      else
-      {
-          Debug.LogError($"Forecast API Error: {request.error}\nResponse Code: {request.responseCode}");
-          onComplete?.Invoke(null);
-      }
-  }
+        if (request.result == UnityWebRequest.Result.Success)
+        {
+            string json = request.downloadHandler.text;
+            hourlyWeatherSlider.SetWeatherJsonData(json);
+            Debug.Log("WeatherAPI Response:\n" + json);
+        }
+        else
+        {
+            Debug.LogError($"Forecast API Error: {request.error}\nResponse Code: {request.responseCode}");
+            onComplete?.Invoke(null);
+        }
+    }
 
 }
