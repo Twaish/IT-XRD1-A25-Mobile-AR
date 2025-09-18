@@ -267,7 +267,7 @@ public class WeatherService : MonoBehaviour
   [SerializeField] private float debugPrecipitation;
   [SerializeField] private float debugWindKph;
   [SerializeField] private int debugWindDegree;
-  public HourlyWeatherSlider hourlyWeatherSlider;
+  public WeatherSlider hourlyWeatherSlider;
   private WeatherResponse cachedWeather;
   private DateTime lastFetchTime;
 
