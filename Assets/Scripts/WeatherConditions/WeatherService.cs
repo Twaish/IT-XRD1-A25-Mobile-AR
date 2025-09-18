@@ -45,7 +45,7 @@ public class WeatherResponse
     public float wind_kph;
     public int wind_degree;
     public string wind_dir;
-    public int pressure_mb;
+    public float pressure_mb;
     public float pressure_in;
     public float precip_mm;
     public float precip_in;
@@ -90,7 +90,7 @@ public class ForecastResponse
         public float lat;
         public float lon;
         public string tz_id;
-        public int localtime_epoch;
+        public long localtime_epoch; // was int
         public string localtime;
     }
 
@@ -100,14 +100,14 @@ public class ForecastResponse
         public float temp_c;
         public float temp_f;
         public int is_day;
-        public int last_updated_epoch;
+        public long last_updated_epoch; // was int
         public string last_updated;
         public Condition condition;
         public float wind_mph;
         public float wind_kph;
         public int wind_degree;
         public string wind_dir;
-        public int pressure_mb;
+        public float pressure_mb;
         public float pressure_in;
         public float precip_mm;
         public float precip_in;
@@ -126,10 +126,10 @@ public class ForecastResponse
         public float uv;
         public float gust_mph;
         public float gust_kph;
-        public float short_rad;
-        public float diff_rad;
-        public float dni;
-        public float gti;
+        public float? short_rad;
+        public float? diff_rad;
+        public float? dni;
+        public float? gti;
     }
 
     [Serializable]
@@ -156,7 +156,7 @@ public class ForecastResponse
         public string moonrise;
         public string moonset;
         public string moon_phase;
-        public int moon_illumination;
+        public string moon_illumination; // was int
         public int is_moon_up;
         public int is_sun_up;
     }
@@ -199,7 +199,7 @@ public class ForecastResponse
         public float wind_kph;
         public int wind_degree;
         public string wind_dir;
-        public int pressure_mb;
+        public float pressure_mb;
         public float pressure_in;
         public float precip_mm;
         public float precip_in;
@@ -223,10 +223,10 @@ public class ForecastResponse
         public float gust_mph;
         public float gust_kph;
         public float uv;
-        public float short_rad;
-        public float diff_rad;
-        public float dni;
-        public float gti;
+        public float? short_rad;
+        public float? diff_rad;
+        public float? dni;
+        public float? gti;
     }
 
     [Serializable]

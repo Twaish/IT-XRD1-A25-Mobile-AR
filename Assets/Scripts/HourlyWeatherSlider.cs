@@ -1,13 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections.Generic;
 using System;
+using TMPro;
 
 public class HourlyWeatherSlider : MonoBehaviour
 {
     public Slider hourlySlider;
-    public Text timeText;
-    public Text temperatureText;
+    public TextMeshProUGUI timeText;
+    public TextMeshProUGUI temperatureText;
 
     private ForecastResponse weatherData;
 
