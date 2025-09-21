@@ -10,6 +10,7 @@ public class WeatherSlider : MonoBehaviour
     public TextMeshProUGUI temperatureText;
     public Button toggleButton;
     public TextMeshProUGUI toggleButtonText;
+    public ParticleSystem rainParticleSystem;
 
     private ForecastResponse weatherData;
 
@@ -112,6 +113,26 @@ public class WeatherSlider : MonoBehaviour
         UpdateWeatherDisplay((int)value);
     }
 
+    private void UpdateRainEffect(float precipitationMm)
+    {
+        if (rainParticleSystem == null) return;
+
+        var emission = rainParticleSystem.emission;
+
+        if (precipitationMm <= 0f)
+        {
+            emission.rateOverTime = 0f;
+            if (rainParticleSystem.isPlaying) rainParticleSystem.Stop();
+        }
+        else
+        {
+            float intensity = Mathf.Clamp(precipitationMm * 50f, 10f, 500f); 
+            emission.rateOverTime = intensity;
+
+            if (!rainParticleSystem.isPlaying) rainParticleSystem.Play();
+        }
+    }
+
     private void UpdateWeatherDisplay(int index)
     {
         if (weatherData == null || weatherData.forecast.forecastday.Length == 0)
@@ -122,16 +143,15 @@ public class WeatherSlider : MonoBehaviour
 
         if (showingDaily)
         {
-            // Show day info
-            selectedDayIndex = index; // save which day user selected
+            selectedDayIndex = index;
             var dayData = weatherData.forecast.forecastday[index];
 
             headerText.text = "Date: " + dayData.date;
             temperatureText.text = "Avg Temp: " + dayData.day.avgtemp_c + "°C";
+            UpdateRainEffect(dayData.day.totalprecip_mm);
         }
         else
         {
-            // Show hourly info for selected day
             var dayData = weatherData.forecast.forecastday[selectedDayIndex];
             if (index < 0 || index >= dayData.hour.Length)
             {
@@ -142,6 +162,7 @@ public class WeatherSlider : MonoBehaviour
             var hourlyData = dayData.hour[index];
             headerText.text = "Time: " + hourlyData.time;
             temperatureText.text = "Temp: " + hourlyData.temp_c + "°C";
+            UpdateRainEffect(dayData.hour[index].precip_mm);
         }
     }
 }

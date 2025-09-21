@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class WeatherUIManager : MonoBehaviour
 {
@@ -11,7 +10,7 @@ public class WeatherUIManager : MonoBehaviour
     private void Start()
     {
         weatherService.OnForecastUpdated += DisplayForecast;
-        weatherService.FetchForecast("London", 3);
+        weatherService.FetchForecast("Buenaventura", 3);
     }
 
     public Text forecastText;

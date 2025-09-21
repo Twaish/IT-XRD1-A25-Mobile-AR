@@ -57,10 +57,25 @@ public class RainEffectHandler : MonoBehaviour
     velocityModule.x = new MinMaxCurve(x);
     velocityModule.z = new MinMaxCurve(z);
   }
-  
+
   private void OnValidate()
   {
     SetRainRate(lastPrecipMm);
     SetRainVelocity(lastWindKph, lastWindDegree);
   }
+  
+  public void SetActive(bool active)
+  {
+      if (rainParticleSystem == null) return;
+
+      if (active && !rainParticleSystem.isPlaying)
+      {
+          rainParticleSystem.Play();
+      }
+      else if (!active && rainParticleSystem.isPlaying)
+      {
+          rainParticleSystem.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+      }
+  }
+
 }

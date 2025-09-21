@@ -37,15 +37,24 @@ public class RainManager : MonoBehaviour
 
   private void OnWeatherUpdated(WeatherResponse weather)
   {
-    if (weather == null) return;
+      if (weather == null) return;
 
-    float precip = weather.current.precip_mm;
-    float windSpeed = weather.current.wind_kph;
-    float windDegree = weather.current.wind_degree;
+      float precip = weather.current.precip_mm;
+      float windSpeed = weather.current.wind_kph;
+      float windDegree = weather.current.wind_degree;
 
-    rainEffectHandler.SetRainRate(precip);
-    rainEffectHandler.SetRainVelocity(windSpeed, windDegree);
-    Debug.Log($"RainManager: Updated rain with precip {precip} mm, wind {windSpeed} kph at {windDegree}°");
+      if (precip > 0.01f)
+      {
+          rainEffectHandler.SetActive(true);
+          rainEffectHandler.SetRainRate(precip);
+          rainEffectHandler.SetRainVelocity(windSpeed, windDegree);
+          Debug.Log($"RainManager: Raining with {precip} mm precipitation");
+      }
+      else
+      {
+          rainEffectHandler.SetActive(false);
+          Debug.Log("RainManager: No rain");
+      }
   }
   
 }
