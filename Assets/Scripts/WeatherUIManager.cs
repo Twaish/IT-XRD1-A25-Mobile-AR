@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class WeatherUIManager : MonoBehaviour
 {
@@ -15,14 +16,26 @@ public class WeatherUIManager : MonoBehaviour
     {
         weatherService.OnForecastUpdated += OnForecastReceived;
 
-        string location = locationProvider.GetWeatherApiLocationString();
-        if (location == "Unknown")
+        string defaultLocation = "Buenaventura";
+        weatherService.FetchForecast(defaultLocation, 3);
+        Debug.Log($"Using default location: {defaultLocation}");
+
+        StartCoroutine(WaitForAndFetchRealLocation());
+    }
+
+    private IEnumerator WaitForAndFetchRealLocation()
+    {
+        string realLocation = locationProvider.GetWeatherApiLocationString();
+
+        while (realLocation == "Unknown")
         {
-            Debug.LogWarning("Location not ready. Using default: Horsens");
-            location = "Horsens";
+            Debug.LogWarning("Real location not ready. Waiting 1 second...");
+            yield return new WaitForSeconds(1f);
+            realLocation = locationProvider.GetWeatherApiLocationString();
         }
 
-        weatherService.FetchForecast(location, 3);
+        Debug.Log($"Real location found: {realLocation}. Updating weather data.");
+        weatherService.FetchForecast(realLocation, 3);
     }
 
     private void OnForecastReceived(ForecastResponse forecast)
