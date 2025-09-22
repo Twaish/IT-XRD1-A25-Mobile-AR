@@ -45,17 +45,13 @@ public class RainEffectHandler : MonoBehaviour
   {
     lastWindKph = windKph;
     lastWindDegree = windDegree;
-    float windMs = windKph / 3.6f; // km/h to m/s
 
-    float angleRad = (windDegree + 180f) * Mathf.Deg2Rad;
-
-    float x = Mathf.Sin(angleRad) * windMs * windModifier;
-    float z = Mathf.Cos(angleRad) * windMs * windModifier;
+    Vector3 windVec = WindUtils.CalculateWindVector(windKph, windDegree, windModifier);
 
     VelocityOverLifetimeModule velocityModule = rainParticleSystem.velocityOverLifetime;
     velocityModule.enabled = true;
-    velocityModule.x = new MinMaxCurve(x);
-    velocityModule.z = new MinMaxCurve(z);
+    velocityModule.x = new MinMaxCurve(windVec.x);
+    velocityModule.z = new MinMaxCurve(windVec.z);
   }
 
   private void OnValidate()

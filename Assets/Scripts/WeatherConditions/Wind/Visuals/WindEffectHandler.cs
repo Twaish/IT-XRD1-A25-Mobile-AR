@@ -27,17 +27,12 @@ public class WindEffectHandler : MonoBehaviour
     lastWindKph = windKph;
     lastWindDegree = windDegree;
 
-    float windMs = windKph / 3.6f; // km/h to m/s
-
-    float angleRad = (windDegree + 180f) * Mathf.Deg2Rad;
-
-    float x = Mathf.Sin(angleRad) * windMs * windModifier;
-    float z = Mathf.Cos(angleRad) * windMs * windModifier;
+    Vector3 windVec = WindUtils.CalculateWindVector(windKph, windDegree, windModifier);
 
     ForceOverLifetimeModule forceModule = windParticleSystem.forceOverLifetime;
     forceModule.enabled = true;
-    forceModule.x = new MinMaxCurve(x);
-    forceModule.z = new MinMaxCurve(z);
+    forceModule.x = new MinMaxCurve(windVec.x);
+    forceModule.z = new MinMaxCurve(windVec.z);
   }
 
   private void OnValidate()
