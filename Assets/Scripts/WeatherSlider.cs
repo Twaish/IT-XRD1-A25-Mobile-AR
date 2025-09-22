@@ -11,12 +11,9 @@ public class WeatherSlider : MonoBehaviour
     public Button toggleButton;
     public TextMeshProUGUI toggleButtonText;
     public ParticleSystem rainParticleSystem;
-
     private ForecastResponse weatherData;
-
-    private bool showingDaily = true; // Start in daily mode
-    private int selectedDayIndex = 0; // Which day’s hours to show in hourly mode
-
+    private bool showingDaily = true;
+    private int selectedDayIndex = 0;
     private void Awake()
     {
         if (weatherSlider != null)
@@ -85,7 +82,7 @@ public class WeatherSlider : MonoBehaviour
         weatherSlider.minValue = 0;
         weatherSlider.maxValue = weatherData.forecast.forecastday.Length - 1;
         weatherSlider.wholeNumbers = true;
-        weatherSlider.value = selectedDayIndex; // keep track of last selected day
+        weatherSlider.value = selectedDayIndex;
 
         toggleButtonText.text = "Switch to Hourly";
         UpdateWeatherDisplay((int)weatherSlider.value);
@@ -102,7 +99,7 @@ public class WeatherSlider : MonoBehaviour
         weatherSlider.minValue = 0;
         weatherSlider.maxValue = weatherData.forecast.forecastday[dayIndex].hour.Length - 1;
         weatherSlider.wholeNumbers = true;
-        weatherSlider.value = 0; // start at first hour
+        weatherSlider.value = 0;
 
         toggleButtonText.text = "Switch to Daily";
         UpdateWeatherDisplay((int)weatherSlider.value);
@@ -126,7 +123,7 @@ public class WeatherSlider : MonoBehaviour
         }
         else
         {
-            float intensity = Mathf.Clamp(precipitationMm * 50f, 10f, 500f); 
+            float intensity = Mathf.Clamp(precipitationMm * 50f, 10f, 500f);
             emission.rateOverTime = intensity;
 
             if (!rainParticleSystem.isPlaying) rainParticleSystem.Play();
@@ -164,5 +161,29 @@ public class WeatherSlider : MonoBehaviour
             temperatureText.text = "Temp: " + hourlyData.temp_c + "°C";
             UpdateRainEffect(dayData.hour[index].precip_mm);
         }
+    }
+
+    public void SwitchToDaily()
+    {
+        showingDaily = true;
+        SetupDailyMode();
+    }
+
+    public void SwitchToHourly()
+    {
+        showingDaily = false;
+        SetupHourlyMode(selectedDayIndex);
+    }
+    
+    public void SetForecast(ForecastResponse forecast)
+    {
+    if (forecast == null || forecast.forecast == null || forecast.forecast.forecastday.Length == 0)
+    {
+        Debug.LogError("WeatherSlider: No forecast data provided.");
+        return;
+    }
+
+    weatherData = forecast; 
+    SetupDailyMode();       
     }
 }

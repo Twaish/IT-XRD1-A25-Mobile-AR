@@ -1557,7 +1557,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2023496573}
         m_TargetAssemblyTypeName: WeatherUIButtonHandler, Assembly-CSharp
-        m_MethodName: ShowHourly
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1975,9 +1975,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeatherUIManager
   weatherService: {fileID: 2023496577}
-  contentParent: {fileID: 2023496576}
-  forecastItemPrefab: {fileID: 6304357927375450078, guid: 5f79496dfaebdabf499413ff4172ccfc,
-    type: 3}
+  locationProvider: {fileID: 2023496575}
+  weatherSlider: {fileID: 2023496574}
   forecastText: {fileID: 0}
 --- !u!114 &2023496573
 MonoBehaviour:
@@ -1991,8 +1990,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 616a441b66ca96d41874c86ad0d6e344, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeatherUIButtonHandler
-  weatherService: {fileID: 2023496577}
-  locationProvider: {fileID: 2023496575}
+  weatherSlider: {fileID: 2023496574}
 --- !u!114 &2023496574
 MonoBehaviour:
   m_ObjectHideFlags: 0

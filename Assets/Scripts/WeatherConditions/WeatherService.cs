@@ -237,7 +237,6 @@ public class ForecastResponse
         public int code;
     }
 }
-
 public class WeatherApiConfigLoader
 {
   public static ApiConfig LoadWeatherApiConfig()
@@ -246,8 +245,13 @@ public class WeatherApiConfigLoader
 
     if (!File.Exists(path))
     {
-      Debug.LogError("API key file not found!");
-      return null;
+      Debug.LogError("API key file not found! Returning a dummy object.");
+      return new ApiConfig
+      {
+        //Used to handle APK where paths gets corrupt due to compression
+        WeatherApiKey = "*************************",
+        Location = "N/A"
+      };
     }
 
     string json = File.ReadAllText(path);
