@@ -11,7 +11,9 @@ public class WeatherSlider : MonoBehaviour
     public Button toggleButton;
     public TextMeshProUGUI toggleButtonText;
     public ParticleSystem rainParticleSystem;
+    public ParticleSystem windParticleSystem;
     private ForecastResponse weatherData;
+    public Transform Wind;
     private bool showingDaily = true;
     private int selectedDayIndex = 0;
     private void Awake()
@@ -129,6 +131,27 @@ public class WeatherSlider : MonoBehaviour
             if (!rainParticleSystem.isPlaying) rainParticleSystem.Play();
         }
     }
+    private void UpdateWindEffect(float windKph)
+    {
+        if (windParticleSystem == null) return;
+
+        var emission = windParticleSystem.emission;
+        var main = windParticleSystem.main;
+
+        if (windKph <= 0f)
+        {
+            emission.rateOverTime = 0f;
+            if (windParticleSystem.isPlaying) windParticleSystem.Stop();
+        }
+        else
+        {
+            float intensity = Mathf.Clamp(windKph * 10f, 20f, 200f);
+            emission.rateOverTime = intensity;
+            main.startSpeed = windKph / 5f;
+
+            if (!windParticleSystem.isPlaying) windParticleSystem.Play();
+        }
+    }
 
     private void UpdateWeatherDisplay(int index)
     {
@@ -138,6 +161,8 @@ public class WeatherSlider : MonoBehaviour
             return;
         }
 
+        float windDirectionDegrees;
+
         if (showingDaily)
         {
             selectedDayIndex = index;
@@ -146,6 +171,8 @@ public class WeatherSlider : MonoBehaviour
             headerText.text = "Date: " + dayData.date;
             temperatureText.text = "Avg Temp: " + dayData.day.avgtemp_c + "°C";
             UpdateRainEffect(dayData.day.totalprecip_mm);
+            UpdateWindEffect(dayData.day.maxwind_kph); 
+            windDirectionDegrees = dayData.day.maxwind_kph;
         }
         else
         {
@@ -159,10 +186,16 @@ public class WeatherSlider : MonoBehaviour
             var hourlyData = dayData.hour[index];
             headerText.text = "Time: " + hourlyData.time;
             temperatureText.text = "Temp: " + hourlyData.temp_c + "°C";
-            UpdateRainEffect(dayData.hour[index].precip_mm);
+            UpdateRainEffect(hourlyData.precip_mm);
+            UpdateWindEffect(hourlyData.wind_kph); 
+            windDirectionDegrees = hourlyData.wind_degree;
+        }
+
+        if (Wind != null)
+        {
+            Wind.rotation = Quaternion.Euler(0, windDirectionDegrees, 0); 
         }
     }
-
     public void SwitchToDaily()
     {
         showingDaily = true;
