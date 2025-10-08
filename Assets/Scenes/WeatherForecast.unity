@@ -357,7 +357,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 252871270}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6078757625505507106}
+        m_TargetAssemblyTypeName: UIToggle, Assembly-CSharp
+        m_MethodName: ToggleUI
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &252871270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -624,9 +636,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 393930760}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fca991919ae7a4f9e88b262fcc3a9f2c, type: 3}
+  m_Script: {fileID: 11500000, guid: 19eaeb4649b7e45a08dd301ba5d8f370, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UIToggler
+  m_EditorClassIdentifier: '::'
+  uiToToggle: {fileID: 393930760}
+  uiToToggleBack: {fileID: 0}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1114,13 +1128,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1049896386}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: -0, z: 0.7071068, w: -0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1355671366}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 270}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 50}
@@ -1571,6 +1585,7 @@ GameObject:
   - component: {fileID: 1355671369}
   - component: {fileID: 1355671368}
   - component: {fileID: 1355671367}
+  - component: {fileID: 1355671370}
   m_Layer: 0
   m_Name: Button-Silder-Toggle
   m_TagString: Untagged
@@ -1643,13 +1658,25 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 393930760}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 393930761}
+        m_TargetAssemblyTypeName: UIToggle, Assembly-CSharp
+        m_MethodName: ToggleUI
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1355671370}
+        m_TargetAssemblyTypeName: UIToggle, Assembly-CSharp
+        m_MethodName: ToggleUI
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1693,6 +1720,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1355671365}
   m_CullTransparentMesh: 1
+--- !u!114 &1355671370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1355671365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19eaeb4649b7e45a08dd301ba5d8f370, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIToggle
+  uiToToggle: {fileID: 1049896386}
+  uiToToggleBack: {fileID: 1195656431}
 --- !u!198 &1428318437 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 3817979111640610958, guid: 5c3fd1fa9be073049a3fe4cf9c6cf111,
@@ -2046,6 +2087,12 @@ ParticleSystem:
     type: 3}
   m_PrefabInstance: {fileID: 1146666315}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2115852098 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3833338899183328331, guid: 51512f3a34bdf452bbe9ea3c1e230ae8,
+    type: 3}
+  m_PrefabInstance: {fileID: 6078757625505507104}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6078757625505507104
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2162,7 +2209,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3833338899183328331, guid: 51512f3a34bdf452bbe9ea3c1e230ae8,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6078757625505507106}
   m_SourcePrefab: {fileID: 100100000, guid: 51512f3a34bdf452bbe9ea3c1e230ae8, type: 3}
 --- !u!224 &6078757625505507105 stripped
 RectTransform:
@@ -2170,6 +2221,20 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 6078757625505507104}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6078757625505507106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2115852098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19eaeb4649b7e45a08dd301ba5d8f370, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIToggle
+  uiToToggle: {fileID: 2115852098}
+  uiToToggleBack: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
