@@ -86,7 +86,7 @@ public class WeatherSlider : MonoBehaviour
         weatherSlider.wholeNumbers = true;
         weatherSlider.value = selectedDayIndex;
 
-        toggleButtonText.text = "Switch to Hourly";
+        toggleButtonText.text = "Hourly";
         UpdateWeatherDisplay((int)weatherSlider.value);
     }
 
@@ -103,7 +103,7 @@ public class WeatherSlider : MonoBehaviour
         weatherSlider.wholeNumbers = true;
         weatherSlider.value = 0;
 
-        toggleButtonText.text = "Switch to Daily";
+        toggleButtonText.text = "Daily";
         UpdateWeatherDisplay((int)weatherSlider.value);
     }
 
@@ -169,7 +169,7 @@ public class WeatherSlider : MonoBehaviour
             var dayData = weatherData.forecast.forecastday[index];
 
             headerText.text = "Date: " + dayData.date;
-            temperatureText.text = "Avg Temp: " + dayData.day.avgtemp_c + "°C";
+            temperatureText.text = dayData.day.avgtemp_c + "°C";
             UpdateRainEffect(dayData.day.totalprecip_mm);
             UpdateWindEffect(dayData.day.maxwind_kph); 
             windDirectionDegrees = dayData.day.maxwind_kph;
@@ -185,7 +185,7 @@ public class WeatherSlider : MonoBehaviour
 
             var hourlyData = dayData.hour[index];
             headerText.text = "Time: " + hourlyData.time;
-            temperatureText.text = "Temp: " + hourlyData.temp_c + "°C";
+            temperatureText.text = hourlyData.temp_c + "°C";
             UpdateRainEffect(hourlyData.precip_mm);
             UpdateWindEffect(hourlyData.wind_kph); 
             windDirectionDegrees = hourlyData.wind_degree;

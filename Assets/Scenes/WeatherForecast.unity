@@ -119,6 +119,18 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &103425804 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5282946688605428304, guid: 18c100e88d9f9422d928a2b3502057b7,
+    type: 3}
+  m_PrefabInstance: {fileID: 393930758}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &130526368 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2512387469002778309, guid: 48cb3fb68c91eb94999fd99957eb0cae,
@@ -858,6 +870,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &571459177 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 942332192965854330, guid: 18c100e88d9f9422d928a2b3502057b7,
+    type: 3}
+  m_PrefabInstance: {fileID: 393930758}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
 --- !u!1001 &858948232
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -971,6 +995,30 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c3fd1fa9be073049a3fe4cf9c6cf111, type: 3}
+--- !u!114 &871278814 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8195721860539529503, guid: 18c100e88d9f9422d928a2b3502057b7,
+    type: 3}
+  m_PrefabInstance: {fileID: 393930758}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!114 &952226098 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6424545954740259888, guid: 18c100e88d9f9422d928a2b3502057b7,
+    type: 3}
+  m_PrefabInstance: {fileID: 393930758}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1 &957430251
 GameObject:
   m_ObjectHideFlags: 0
@@ -1567,6 +1615,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1195656431}
   m_CullTransparentMesh: 1
+--- !u!114 &1253250819 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6594519750598127845, guid: 18c100e88d9f9422d928a2b3502057b7,
+    type: 3}
+  m_PrefabInstance: {fileID: 393930758}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!4 &1278133047 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2512387470890420967, guid: 48cb3fb68c91eb94999fd99957eb0cae,
@@ -1740,6 +1800,18 @@ ParticleSystem:
     type: 3}
   m_PrefabInstance: {fileID: 858948232}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1475718708 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6649734171597637165, guid: 18c100e88d9f9422d928a2b3502057b7,
+    type: 3}
+  m_PrefabInstance: {fileID: 393930758}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1001 &1923077189
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2003,11 +2075,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de4f392f522c8a20cafb6f3812b470f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HourlyWeatherSlider
-  weatherSlider: {fileID: 0}
-  headerText: {fileID: 0}
-  temperatureText: {fileID: 0}
-  toggleButton: {fileID: 0}
-  toggleButtonText: {fileID: 0}
+  weatherSlider: {fileID: 571459177}
+  headerText: {fileID: 1253250819}
+  temperatureText: {fileID: 1475718708}
+  toggleButton: {fileID: 952226098}
+  toggleButtonText: {fileID: 871278814}
   rainParticleSystem: {fileID: 2078861590}
   windParticleSystem: {fileID: 1428318437}
   Wind: {fileID: 983768937}
@@ -2068,7 +2140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CompassManager
   compassUI: {fileID: 0}
-  compassText: {fileID: 0}
+  compassText: {fileID: 103425804}
 --- !u!114 &2049181112 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2512387470319625105, guid: 48cb3fb68c91eb94999fd99957eb0cae,
