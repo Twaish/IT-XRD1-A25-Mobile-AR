@@ -86,7 +86,7 @@ public class WeatherSlider : MonoBehaviour
         weatherSlider.wholeNumbers = true;
         weatherSlider.value = selectedDayIndex;
 
-        toggleButtonText.text = "Hourly";
+        toggleButtonText.text = "Daily";
         UpdateWeatherDisplay((int)weatherSlider.value);
     }
 
@@ -103,7 +103,7 @@ public class WeatherSlider : MonoBehaviour
         weatherSlider.wholeNumbers = true;
         weatherSlider.value = 0;
 
-        toggleButtonText.text = "Daily";
+        toggleButtonText.text = "Hourly";
         UpdateWeatherDisplay((int)weatherSlider.value);
     }
 
