@@ -1633,9 +1633,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1923077189}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< Updated upstream
---- !u!1 &1355671365
-=======
   m_GameObject: {fileID: 1394022567}
   m_CullTransparentMesh: 1
 --- !u!1 &1397659709
@@ -1686,7 +1683,6 @@ Transform:
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1422334284
->>>>>>> Stashed changes
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
