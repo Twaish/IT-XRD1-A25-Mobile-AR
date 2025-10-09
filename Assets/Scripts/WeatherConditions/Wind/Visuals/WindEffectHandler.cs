@@ -1,5 +1,4 @@
 using UnityEngine;
-using static UnityEngine.ParticleSystem;
 
 public class WindEffectHandler : MonoBehaviour
 {
@@ -11,7 +10,7 @@ public class WindEffectHandler : MonoBehaviour
 
   private float lastWindKph;
   private float lastWindDegree;
-
+  private Vector3 currentWindVec;
   private void Awake()
   {
     if (windParticleSystem == null)
@@ -29,10 +28,19 @@ public class WindEffectHandler : MonoBehaviour
 
     Vector3 windVec = WindUtils.CalculateWindVector(windKph, windDegree, windModifier);
 
-    ForceOverLifetimeModule forceModule = windParticleSystem.forceOverLifetime;
+    if (CompassManager.Instance != null)
+    {
+      float deviceHeading = CompassManager.Instance.GetHeading();
+      Quaternion rotation = Quaternion.Euler(0, -deviceHeading, 0);
+      windVec = rotation * windVec;
+    }
+
+    var forceModule = windParticleSystem.forceOverLifetime;
     forceModule.enabled = true;
-    forceModule.x = new MinMaxCurve(windVec.x);
-    forceModule.z = new MinMaxCurve(windVec.z);
+    forceModule.x = new ParticleSystem.MinMaxCurve(windVec.x);
+    forceModule.z = new ParticleSystem.MinMaxCurve(windVec.z);
+
+    windParticleSystem.transform.rotation = Quaternion.LookRotation(currentWindVec.normalized);
   }
 
   private void OnValidate()

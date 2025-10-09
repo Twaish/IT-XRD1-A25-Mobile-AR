@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>SunCalcNet</id>
+    <version>1.2.3</version>
+    <authors>Koste Budinoski</authors>
+    <projectUrl>https://github.com/kostebudinoski/SunCalc-Net</projectUrl>
+    <description>A .NET port of the SunCalc JS lib for calculating sun/moon positions and phases.</description>
+    <repository type="git" url="https://github.com/kostebudinoski/SunCalc-Net" commit="b5c3dc583015924dc89fc0d3e4b376e5a25b5063" />
+    <dependencies>
+      <group targetFramework="net6.0" />
+      <group targetFramework="net7.0" />
+      <group targetFramework="net8.0" />
+      <group targetFramework=".NETStandard2.0" />
+      <group targetFramework=".NETStandard2.1" />
+    </dependencies>
+  </metadata>
+</package>
