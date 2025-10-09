@@ -870,7 +870,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 0
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -1495,7 +1495,7 @@ ParticleSystem:
     x:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: -0
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -1601,7 +1601,7 @@ ParticleSystem:
     z:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: -0
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -2189,7 +2189,7 @@ ParticleSystem:
         m_RotationOrder: 4
     m_Range: {x: 0, y: 1}
   ForceModule:
-    enabled: 1
+    enabled: 0
     x:
       serializedVersion: 2
       minMaxState: 0
@@ -4845,6 +4845,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3072023178651500765}
+  - component: {fileID: 7367914964483336264}
+  - component: {fileID: 5785316402988473837}
   m_Layer: 0
   m_Name: Leaves
   m_TagString: Untagged
@@ -4868,3 +4870,31 @@ Transform:
   - {fileID: 6621616209311374229}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7367914964483336264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9106810671368360590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65d0232c67ee22844aad014f56de0d16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LeavesEffectHandler
+  leavesParticleSystem: {fileID: 3210624535458300925}
+  rateModifier: 1
+  windModifier: 0.2
+--- !u!114 &5785316402988473837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9106810671368360590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 143208d16466c3e46b5573d402251595, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LeavesManager
+  weatherService: {fileID: 0}
