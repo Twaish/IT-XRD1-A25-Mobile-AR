@@ -181,6 +181,12 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!20 &130526376 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 2512387469002778331, guid: 48cb3fb68c91eb94999fd99957eb0cae,
+    type: 3}
+  m_PrefabInstance: {fileID: 1923077189}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &208757957
 GameObject:
   m_ObjectHideFlags: 0
@@ -1139,7 +1145,7 @@ Transform:
   m_GameObject: {fileID: 957430251}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.49, z: 0.27}
+  m_LocalPosition: {x: 0, y: 0.49, z: 4.684}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2141,6 +2147,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CompassManager
   compassUI: {fileID: 0}
   compassText: {fileID: 103425804}
+  arSessionOrigin: {fileID: 0}
+  arCamera: {fileID: 130526376}
 --- !u!114 &2049181112 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2512387470319625105, guid: 48cb3fb68c91eb94999fd99957eb0cae,
