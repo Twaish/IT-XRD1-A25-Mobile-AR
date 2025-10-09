@@ -119,6 +119,80 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &21479241
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 150146770050126991, guid: 3e1d966f7e552f04b990f8ece608c69b,
+        type: 3}
+      propertyPath: m_Name
+      value: sunPrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 7594089967362908901, guid: 3e1d966f7e552f04b990f8ece608c69b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.23618
+      objectReference: {fileID: 0}
+    - target: {fileID: 7594089967362908901, guid: 3e1d966f7e552f04b990f8ece608c69b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7594089967362908901, guid: 3e1d966f7e552f04b990f8ece608c69b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.0878
+      objectReference: {fileID: 0}
+    - target: {fileID: 7594089967362908901, guid: 3e1d966f7e552f04b990f8ece608c69b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7594089967362908901, guid: 3e1d966f7e552f04b990f8ece608c69b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7594089967362908901, guid: 3e1d966f7e552f04b990f8ece608c69b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7594089967362908901, guid: 3e1d966f7e552f04b990f8ece608c69b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7594089967362908901, guid: 3e1d966f7e552f04b990f8ece608c69b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7594089967362908901, guid: 3e1d966f7e552f04b990f8ece608c69b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7594089967362908901, guid: 3e1d966f7e552f04b990f8ece608c69b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3e1d966f7e552f04b990f8ece608c69b, type: 3}
+--- !u!4 &21479242 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7594089967362908901, guid: 3e1d966f7e552f04b990f8ece608c69b,
+    type: 3}
+  m_PrefabInstance: {fileID: 21479241}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &103425804 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5282946688605428304, guid: 18c100e88d9f9422d928a2b3502057b7,
@@ -1939,6 +2013,12 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 130526370}
   m_SourcePrefab: {fileID: 100100000, guid: 48cb3fb68c91eb94999fd99957eb0cae, type: 3}
+--- !u!20 &1923077190 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 2512387469002778331, guid: 48cb3fb68c91eb94999fd99957eb0cae,
+    type: 3}
+  m_PrefabInstance: {fileID: 1923077189}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2013816763
 GameObject:
   m_ObjectHideFlags: 0
@@ -2177,6 +2257,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CompassManager
   compassUI: {fileID: 0}
   compassText: {fileID: 103425804}
+  arSessionOrigin: {fileID: 0}
+  arCamera: {fileID: 1923077190}
 --- !u!114 &2023496579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2186,18 +2268,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2023496571}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6a36902203c814438c1ba152b0e753f, type: 3}
+  m_Script: {fileID: 11500000, guid: f481bfc3f3aacb94781cbcc0aeb09a0b, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CurrentWeatherUI
-  weatherService: {fileID: 2023496577}
-  temperatureText: {fileID: 1023358641}
-  weatherIcon: {fileID: 1671441694}
-  conditionText: {fileID: 0}
-  sunnyIcon: {fileID: 21300000, guid: b800b398fef9ce84e877df40e47cd074, type: 3}
-  cloudyIcon: {fileID: 21300000, guid: 2475e009343d8bf4cb0782f10f19c737, type: 3}
-  rainyIcon: {fileID: 21300000, guid: 8e1cb4b3610400d41a759dab75657887, type: 3}
-  snowyIcon: {fileID: 21300000, guid: 5003d17f12a1bcf44aef446ac9be40fe, type: 3}
-  foggyIcon: {fileID: 21300000, guid: 72d23295025b22745a2a01328ea840bd, type: 3}
+  m_EditorClassIdentifier: Assembly-CSharp::SunLocation
+  sunPrefab: {fileID: 21479242}
+  arCamera: {fileID: 1923077190}
 --- !u!114 &2049181112 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2512387470319625105, guid: 48cb3fb68c91eb94999fd99957eb0cae,
@@ -2377,3 +2452,4 @@ SceneRoots:
   - {fileID: 1146666315}
   - {fileID: 1923077189}
   - {fileID: 858948232}
+  - {fileID: 21479241}
