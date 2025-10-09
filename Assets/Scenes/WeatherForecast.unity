@@ -1151,6 +1151,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 858948232}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1023358641 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4790615639284599306, guid: 4ef9b1fdd190da246bb701e3fd232512,
+    type: 3}
+  m_PrefabInstance: {fileID: 1064639847}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &1049896386
 GameObject:
   m_ObjectHideFlags: 0
@@ -1234,6 +1246,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 208757961}
     m_Modifications:
+    - target: {fileID: 4518172668638499772, guid: 4ef9b1fdd190da246bb701e3fd232512,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 289
+      objectReference: {fileID: 0}
+    - target: {fileID: 4790615639284599306, guid: 4ef9b1fdd190da246bb701e3fd232512,
+        type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7561016261623612292, guid: 4ef9b1fdd190da246bb701e3fd232512,
         type: 3}
       propertyPath: m_Name
@@ -1340,7 +1362,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3034323680299655199, guid: 4ef9b1fdd190da246bb701e3fd232512, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ef9b1fdd190da246bb701e3fd232512, type: 3}
@@ -1812,6 +1835,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!114 &1671441694 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2862950693746002966, guid: 4ef9b1fdd190da246bb701e3fd232512,
+    type: 3}
+  m_PrefabInstance: {fileID: 1064639847}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1001 &1923077189
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2027,6 +2062,7 @@ GameObject:
   - component: {fileID: 2023496572}
   - component: {fileID: 2023496577}
   - component: {fileID: 2023496578}
+  - component: {fileID: 2023496579}
   m_Layer: 0
   m_Name: UIHandler
   m_TagString: Untagged
@@ -2141,6 +2177,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CompassManager
   compassUI: {fileID: 0}
   compassText: {fileID: 103425804}
+--- !u!114 &2023496579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2023496571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6a36902203c814438c1ba152b0e753f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CurrentWeatherUI
+  weatherService: {fileID: 2023496577}
+  temperatureText: {fileID: 1023358641}
+  weatherIcon: {fileID: 1671441694}
+  conditionText: {fileID: 0}
+  sunnyIcon: {fileID: 21300000, guid: b800b398fef9ce84e877df40e47cd074, type: 3}
+  cloudyIcon: {fileID: 21300000, guid: 2475e009343d8bf4cb0782f10f19c737, type: 3}
+  rainyIcon: {fileID: 21300000, guid: 8e1cb4b3610400d41a759dab75657887, type: 3}
+  snowyIcon: {fileID: 21300000, guid: 5003d17f12a1bcf44aef446ac9be40fe, type: 3}
+  foggyIcon: {fileID: 21300000, guid: 72d23295025b22745a2a01328ea840bd, type: 3}
 --- !u!114 &2049181112 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2512387470319625105, guid: 48cb3fb68c91eb94999fd99957eb0cae,
