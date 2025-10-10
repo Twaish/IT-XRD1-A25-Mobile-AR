@@ -29,7 +29,6 @@ public class WeatherUIManager : MonoBehaviour
 
         while (realLocation == "Unknown")
         {
-            Debug.LogWarning("Real location not ready. Waiting 1 second...");
             yield return new WaitForSeconds(1f);
             realLocation = locationProvider.GetWeatherApiLocationString();
         }

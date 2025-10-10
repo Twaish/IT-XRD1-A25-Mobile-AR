@@ -13,6 +13,7 @@ public class WeatherSlider : MonoBehaviour
     public ParticleSystem rainParticleSystem;
     public ParticleSystem windParticleSystem;
     private ForecastResponse weatherData;
+    public SunLocationManager sunLocationManager;
     public Transform Wind;
     private bool showingDaily = true;
     private int selectedDayIndex = 0;
@@ -193,7 +194,28 @@ public class WeatherSlider : MonoBehaviour
 
         if (Wind != null)
         {
-            Wind.rotation = Quaternion.Euler(0, windDirectionDegrees, 0); 
+            Wind.rotation = Quaternion.Euler(0, windDirectionDegrees, 0);
+        }
+        
+        if (sunLocationManager != null)
+        {
+            DateTime targetTime;
+            var condition = "";
+
+            if (showingDaily)
+            {
+                var dayData = weatherData.forecast.forecastday[index];
+                targetTime = DateTime.Parse(dayData.date);
+                condition = dayData.day.condition.text;
+            }
+            else
+            {
+                var hourData = weatherData.forecast.forecastday[selectedDayIndex].hour[index];
+                targetTime = DateTime.Parse(hourData.time);
+                condition = hourData.condition.text;
+            }
+
+            sunLocationManager.UpdateSunForTime(targetTime, condition, weatherData.location, weatherData.current.cloud);
         }
     }
     public void SwitchToDaily()
