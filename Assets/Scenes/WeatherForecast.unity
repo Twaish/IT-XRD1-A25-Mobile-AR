@@ -132,6 +132,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: sunPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 150146770050126991, guid: 3e1d966f7e552f04b990f8ece608c69b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7594089967362908901, guid: 3e1d966f7e552f04b990f8ece608c69b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2319,6 +2324,7 @@ MonoBehaviour:
   toggleButtonText: {fileID: 871278814}
   rainParticleSystem: {fileID: 2078861590}
   windParticleSystem: {fileID: 1428318437}
+  sunLocationManager: {fileID: 2023496579}
   Wind: {fileID: 983768937}
 --- !u!114 &2023496575
 MonoBehaviour:

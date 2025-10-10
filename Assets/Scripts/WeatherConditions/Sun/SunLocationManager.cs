@@ -12,6 +12,9 @@ public class SunLocationManager : MonoBehaviour
     [SerializeField] private Transform sunPrefab;
     [SerializeField] private Camera arCamera;
 
+    private float initialHeading;
+    private bool headingInitialized = false;
+
     private Transform sunInstance;
     private LocationInfo currentLocation;
     private readonly string[] sunVisibleKeywords = new string[]
@@ -49,6 +52,8 @@ public class SunLocationManager : MonoBehaviour
     {
         weatherService.OnWeatherUpdated += OnWeatherUpdated;
         StartCoroutine(StartLocationService());
+        Input.compass.enabled = true;
+        StartCoroutine(InitializeHeading());
     }
 
     private void OnDisable()
@@ -81,7 +86,18 @@ public class SunLocationManager : MonoBehaviour
         currentLocation = Input.location.lastData;
         Input.compass.enabled = true;
     }
+    private IEnumerator InitializeHeading()
+    {
+        yield return new WaitForSeconds(0.5f);
+        
+        if (CompassManager.Instance != null)
+            initialHeading = CompassManager.Instance.GetHeading();
+        else
+            initialHeading = Input.compass.trueHeading;
 
+        headingInitialized = true;
+        Debug.Log("Initial heading captured: " + initialHeading);
+    }
     private void OnWeatherUpdated(WeatherResponse weather)
     {
         if (weather == null || arCamera == null) return;
@@ -193,12 +209,11 @@ public class SunLocationManager : MonoBehaviour
 
     Vector3 dir = SunDirection(azimuthDeg, altitudeDeg);
 
-    float heading = CompassManager.Instance != null
-        ? CompassManager.Instance.GetHeading()
-        : Input.compass.trueHeading;
+    if (!headingInitialized) return;
 
-    dir = Quaternion.Euler(0, -heading, 0) * dir;
-    Vector3 sunWorldPos = arCamera.transform.position + dir * 10f;
+    dir = Quaternion.Euler(0, -initialHeading, 0) * dir;
+    
+    Vector3 sunWorldPos = arCamera.transform.position + dir * 40f;
 
     if (sunInstance == null)
     {
