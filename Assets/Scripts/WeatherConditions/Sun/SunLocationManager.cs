@@ -207,6 +207,14 @@ public class SunLocationManager : MonoBehaviour
     float azimuthDeg = Mathf.Rad2Deg * (float)sunPos.Azimuth;
     float altitudeDeg = Mathf.Rad2Deg * (float)sunPos.Altitude;
 
+    bool isSunAboveHorizon = altitudeDeg > 0f;
+    if (!isSunAboveHorizon)
+    {
+        SetSunActive(false);
+        Debug.Log($"SunLocationManager: Sun hidden due being under horizon '{altitudeDeg}'.");
+        return;
+    }
+
     Vector3 dir = SunDirection(azimuthDeg, altitudeDeg);
 
     if (!headingInitialized) return;
