@@ -1,6 +1,6 @@
 using UnityEngine;
-using UnityEngine.UI;
 using System.Collections;
+using TMPro;
 
 public class WeatherUIManager : MonoBehaviour
 {
@@ -8,9 +8,9 @@ public class WeatherUIManager : MonoBehaviour
     [SerializeField] private LocationServiceManager locationProvider;
     [SerializeField] private WeatherSlider weatherSlider;
 
-    public Text forecastText;
+    public TextMeshProUGUI forecastText;
 
-    private ForecastResponse cachedForecast;
+    private WeatherData cachedForecast;
 
     private void Start()
     {
@@ -37,7 +37,7 @@ public class WeatherUIManager : MonoBehaviour
         weatherService.FetchForecast(realLocation, 3);
     }
 
-    private void OnForecastReceived(ForecastResponse forecast)
+    private void OnForecastReceived(WeatherData forecast)
     {
         if (forecast == null || forecast.forecast == null || forecast.forecast.forecastday.Length == 0)
         {

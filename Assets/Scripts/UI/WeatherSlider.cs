@@ -12,7 +12,7 @@ public class WeatherSlider : MonoBehaviour
     public TextMeshProUGUI toggleButtonText;
     public ParticleSystem rainParticleSystem;
     public ParticleSystem windParticleSystem;
-    private ForecastResponse weatherData;
+    private WeatherData weatherData;
     public SunLocationManager sunLocationManager;
     public Transform Wind;
     private bool showingDaily = true;
@@ -48,7 +48,7 @@ public class WeatherSlider : MonoBehaviour
 
         try
         {
-            weatherData = JsonUtility.FromJson<ForecastResponse>(jsonString);
+            weatherData = JsonUtility.FromJson<WeatherData>(jsonString);
 
             if (weatherData != null && weatherData.forecast != null && weatherData.forecast.forecastday.Length > 0)
             {
@@ -230,7 +230,7 @@ public class WeatherSlider : MonoBehaviour
         SetupHourlyMode(selectedDayIndex);
     }
     
-    public void SetForecast(ForecastResponse forecast)
+    public void SetForecast(WeatherData forecast)
     {
     if (forecast == null || forecast.forecast == null || forecast.forecast.forecastday.Length == 0)
     {

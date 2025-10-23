@@ -195,7 +195,7 @@ public class SunLocationManager : MonoBehaviour
             flare.intensity = intensity;
     }
     
-    public void UpdateSunForTime(DateTime time, string condition, ForecastResponse.Location location, int cloudAmount)
+    public void UpdateSunForTime(DateTime time, string condition, Location location, int cloudAmount)
     {
     if (arCamera == null || sunPrefab == null) return;
 
