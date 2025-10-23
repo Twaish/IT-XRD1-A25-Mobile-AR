@@ -76,7 +76,7 @@ public class Condition
 [Serializable]
 public class Forecast
 {
-    public List<ForecastDay> forecastday;
+    public ForecastDay[] forecastday;
 }
 
 [Serializable]
@@ -86,7 +86,7 @@ public class ForecastDay
     public long date_epoch;
     public Day day;
     public Astro astro;
-    public List<Hour> hour;
+    public Hour[] hour;
 }
 
 [Serializable]
