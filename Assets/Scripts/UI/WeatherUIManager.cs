@@ -1,13 +1,13 @@
 using UnityEngine;
 using System.Collections;
 using TMPro;
+using System;
 
 public class WeatherUIManager : MonoBehaviour
 {
     [SerializeField] private WeatherService weatherService;
     [SerializeField] private LocationServiceManager locationProvider;
     [SerializeField] private WeatherSlider weatherSlider;
-
     public TextMeshProUGUI forecastText;
 
     private WeatherData cachedForecast;
@@ -16,7 +16,7 @@ public class WeatherUIManager : MonoBehaviour
     {
         weatherService.OnForecastUpdated += OnForecastReceived;
 
-        string defaultLocation = "Buenaventura";
+        string defaultLocation = "Horsens";
         weatherService.FetchForecast(defaultLocation, 3);
         Debug.Log($"Using default location: {defaultLocation}");
 
@@ -47,14 +47,6 @@ public class WeatherUIManager : MonoBehaviour
         }
 
         cachedForecast = forecast;
-
-        var today = forecast.forecast.forecastday[0];
-        forecastText.text = $"Forecast for {today.date}:\n" +
-                            $"Max Temp: {today.day.maxtemp_c}°C\n" +
-                            $"Min Temp: {today.day.mintemp_c}°C\n" +
-                            $"Condition: {today.day.condition.text}\n" +
-                            $"Rain Chance: {today.day.daily_chance_of_rain}%";
-
         weatherSlider.SetForecast(cachedForecast);
     }
 }

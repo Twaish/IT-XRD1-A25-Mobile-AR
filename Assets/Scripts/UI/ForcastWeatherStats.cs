@@ -23,6 +23,7 @@ public class ForecastWeatherStats : MonoBehaviour
     public TextMeshProUGUI temperatureMin3Text;
     public TextMeshProUGUI temperatureMax3Text;
     public Image weather3Icon;
+    public WeatherUIManager weatherUIManager;
 
     [Header("Weather Icons")]
     public Sprite sunnyIcon;
@@ -39,27 +40,26 @@ public class ForecastWeatherStats : MonoBehaviour
     private void OnEnable()
     {
         if (weatherService != null)
-            weatherService.OnForecastUpdated += UpdateForecastUI;
+        {
+            weatherService.OnWeatherUpdated += UpdateForecastUI;
+        }
 
-        // Request forecast when enabled
-        weatherService.FetchForecast("auto:ip", 3);
     }
 
     private void OnDisable()
     {
         if (weatherService != null)
-            weatherService.OnForecastUpdated -= UpdateForecastUI;
+            weatherService.OnWeatherUpdated -= UpdateForecastUI;
     }
 
     private void UpdateForecastUI(WeatherData data)
     {
-        if (data == null || data.forecast == null || data.forecast.forecastday == null)
+        var days = data?.forecast?.forecastday;
+        if (days == null)
         {
             Debug.LogError("ForecastWeatherStats: Forecast data is null or incomplete!");
             return;
         }
-
-        var days = data.forecast.forecastday;
 
         // Handle each day safely
         if (days.Length > 0)
@@ -82,20 +82,17 @@ public class ForecastWeatherStats : MonoBehaviour
         if (dayData == null || dayData.day == null)
             return;
 
-        // 🗓️ Display day name
         if (dayText != null)
         {
             string dayName = DateTime.Now.AddDays(dayOffset).ToString("dddd");
             dayText.text = dayName;
         }
 
-        // 🌡️ Temperatures
         if (minTempText != null)
             minTempText.text = $"{dayData.day.mintemp_c:F0}°C";
         if (maxTempText != null)
             maxTempText.text = $"{dayData.day.maxtemp_c:F0}°C";
 
-        // 🌦️ Icon
         string condition = dayData.day.condition.text.ToLower();
         float windKph = dayData.day.maxwind_kph;
 
@@ -106,11 +103,9 @@ public class ForecastWeatherStats : MonoBehaviour
 
     private Sprite GetWeatherIcon(string condition, float windKph)
     {
-        // 🌬️ Windy override
         if (windKph >= windyThreshold)
             return windyIcon;
 
-        // ☀️ Basic condition matching
         if (condition.Contains("sun") || condition.Contains("clear"))
             return sunnyIcon;
 
@@ -129,7 +124,6 @@ public class ForecastWeatherStats : MonoBehaviour
         if (condition.Contains("snow"))
             return snowyIcon;
 
-        // Default fallback
         return cloudyIcon;
     }
 }
