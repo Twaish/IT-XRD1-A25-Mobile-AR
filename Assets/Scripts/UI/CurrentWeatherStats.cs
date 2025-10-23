@@ -38,7 +38,7 @@ public class CurrentWeatherUI : MonoBehaviour
             weatherService.OnWeatherUpdated -= UpdateUI;
     }
 
-    private void UpdateUI(WeatherResponse data)
+    private void UpdateUI(WeatherData data)
     {
         if (data == null || data.current == null)
         {

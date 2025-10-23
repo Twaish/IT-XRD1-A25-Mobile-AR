@@ -35,7 +35,7 @@ public class LeavesManager : MonoBehaviour
     }
   }
 
-  private void OnWeatherUpdated(WeatherResponse weather)
+  private void OnWeatherUpdated(WeatherData weather)
   {
       if (weather == null) return;
 

@@ -35,7 +35,7 @@ public class WindManager : MonoBehaviour
     }
   }
 
-  private void OnWeatherUpdated(WeatherResponse weather)
+  private void OnWeatherUpdated(WeatherData weather)
   {
     if (weather == null) return;
 

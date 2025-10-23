@@ -5,69 +5,6 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 [Serializable]
-public class WeatherResponse
-{
-  public Location location;
-  public Current current;
-
-  [Serializable]
-  public class Location
-  {
-    public string name;
-    public string region;
-    public string country;
-    public float lat;
-    public float lon;
-    public string tz_id;
-    public int localtime_epoch;
-    public string localtime;
-  }
-
-  [Serializable]
-  public class Current
-  {
-    public float temp_c;
-    public float temp_f;
-    public int is_day;
-    public int last_updated_epoch;
-    public string last_updated;
-
-    public Condition condition;
-
-    [Serializable]
-    public class Condition
-    {
-      public string text;
-      public string icon;
-      public int code;
-    }
-    public float wind_mph;
-    public float wind_kph;
-    public int wind_degree;
-    public string wind_dir;
-    public float pressure_mb;
-    public float pressure_in;
-    public float precip_mm;
-    public float precip_in;
-    public int humidity;
-    public int cloud;
-    public float feelslike_c;
-    public float feelslike_f;
-    public float windchill_c;
-    public float windchill_f;
-    public float heatindex_c;
-    public float heatindex_f;
-    public float dewpoint_c;
-    public float dewpoint_f;
-    public float vis_km;
-    public float vis_miles;
-    public float uv;
-    public float gust_mph;
-    public float gust_kph;
-  }
-}
-
-[Serializable]
 public class ApiConfig
 {
   public string WeatherApiKey;
@@ -272,12 +209,12 @@ public class WeatherService : MonoBehaviour
   [SerializeField] private float debugWindKph;
   [SerializeField] private int debugWindDegree;
   public WeatherSlider hourlyWeatherSlider;
-  private WeatherResponse cachedWeather;
+  private WeatherData cachedWeather;
   private DateTime lastFetchTime;
 
   private string CacheFilePath => Path.Combine(Application.persistentDataPath, cacheFileName);
 
-  public event Action<WeatherResponse> OnWeatherUpdated;
+  public event Action<WeatherData> OnWeatherUpdated;
 
   private float lastDebugPrecip;
   private float lastDebugWindKph;
@@ -351,7 +288,7 @@ public class WeatherService : MonoBehaviour
       try
       {
         string json = File.ReadAllText(CacheFilePath);
-        cachedWeather = JsonUtility.FromJson<WeatherResponse>(json);
+        cachedWeather = JsonUtility.FromJson<WeatherData>(json);
         lastFetchTime = DateTime.Now;
       }
       catch (Exception e)
@@ -365,7 +302,7 @@ public class WeatherService : MonoBehaviour
   {
     FetchWeather(city, null);
   }
-  public void FetchWeather(string city, Action<WeatherResponse> onComplete)
+  public void FetchWeather(string city, Action<WeatherData> onComplete)
   {
     if (cachedWeather != null && (DateTime.Now - lastFetchTime).TotalSeconds < cacheDuration)
     {
@@ -376,7 +313,7 @@ public class WeatherService : MonoBehaviour
     StartCoroutine(GetWeatherCoroutine(city, onComplete));
   }
 
-  private IEnumerator GetWeatherCoroutine(string city, Action<WeatherResponse> onComplete)
+  private IEnumerator GetWeatherCoroutine(string city, Action<WeatherData> onComplete)
   {
     string url = $"https://api.weatherapi.com/v1/current.json?key={apiKey}&q={city}";
     using UnityWebRequest request = UnityWebRequest.Get(url);
@@ -385,7 +322,7 @@ public class WeatherService : MonoBehaviour
     if (request.result == UnityWebRequest.Result.Success)
     {
       string json = request.downloadHandler.text;
-      WeatherResponse weatherData = JsonUtility.FromJson<WeatherResponse>(json);
+      WeatherData weatherData = JsonUtility.FromJson<WeatherData>(json);
 
       cachedWeather = weatherData;
       lastFetchTime = DateTime.Now;
@@ -403,29 +340,29 @@ public class WeatherService : MonoBehaviour
 
   public event Action<ForecastResponse> OnForecastUpdated;
 
-    public void FetchForecast(string location, int days = 3, Action<ForecastResponse> onComplete = null)
+  public void FetchForecast(string location, int days = 3, Action<ForecastResponse> onComplete = null)
+  {
+    StartCoroutine(GetForecastCoroutine(location, days, onComplete));
+  }
+
+  private IEnumerator GetForecastCoroutine(string location, int days, Action<ForecastResponse> onComplete)
+  {
+    string url = $"https://api.weatherapi.com/v1/forecast.json?key={apiKey}&q={location}&days={days}&aqi=no&alerts=no";
+
+    using UnityWebRequest request = UnityWebRequest.Get(url);
+    yield return request.SendWebRequest();
+
+    if (request.result == UnityWebRequest.Result.Success)
     {
-        StartCoroutine(GetForecastCoroutine(location, days, onComplete));
+      string json = request.downloadHandler.text;
+      hourlyWeatherSlider.SetWeatherJsonData(json);
+      Debug.Log("WeatherAPI Response:\n" + json);
     }
-
-    private IEnumerator GetForecastCoroutine(string location, int days, Action<ForecastResponse> onComplete)
+    else
     {
-        string url = $"https://api.weatherapi.com/v1/forecast.json?key={apiKey}&q={location}&days={days}&aqi=no&alerts=no";
-
-        using UnityWebRequest request = UnityWebRequest.Get(url);
-        yield return request.SendWebRequest();
-
-        if (request.result == UnityWebRequest.Result.Success)
-        {
-            string json = request.downloadHandler.text;
-            hourlyWeatherSlider.SetWeatherJsonData(json);
-            Debug.Log("WeatherAPI Response:\n" + json);
-        }
-        else
-        {
-            Debug.LogError($"Forecast API Error: {request.error}\nResponse Code: {request.responseCode}");
-            onComplete?.Invoke(null);
-        }
+      Debug.LogError($"Forecast API Error: {request.error}\nResponse Code: {request.responseCode}");
+      onComplete?.Invoke(null);
     }
+  }
 
 }

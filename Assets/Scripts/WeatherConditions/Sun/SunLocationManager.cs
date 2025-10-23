@@ -98,7 +98,7 @@ public class SunLocationManager : MonoBehaviour
         headingInitialized = true;
         Debug.Log("Initial heading captured: " + initialHeading);
     }
-    private void OnWeatherUpdated(WeatherResponse weather)
+    private void OnWeatherUpdated(WeatherData weather)
     {
         if (weather == null || arCamera == null) return;
 
