@@ -18,15 +18,13 @@ public class Location
     public float lat;
     public float lon;
     public string tz_id;
-    public int localtime_epoch;
+    public long localtime_epoch;
     public string localtime;
 }
 
 [Serializable]
-public class Current
+public class BaseWeatherMetrics
 {
-    public int last_updated_epoch;
-    public string last_updated;
     public float temp_c;
     public float temp_f;
     public int is_day;
@@ -43,11 +41,28 @@ public class Current
     public int cloud;
     public float feelslike_c;
     public float feelslike_f;
+    public float windchill_c;
+    public float windchill_f;
+    public float heatindex_c;
+    public float heatindex_f;
+    public float dewpoint_c;
+    public float dewpoint_f;
     public float vis_km;
     public float vis_miles;
     public float uv;
     public float gust_mph;
     public float gust_kph;
+    public float? short_rad;
+    public float? diff_rad;
+    public float? dni;
+    public float? gti;
+}
+
+[Serializable]
+public class Current : BaseWeatherMetrics
+{
+    public long last_updated_epoch;
+    public string last_updated;
 }
 
 [Serializable]
@@ -68,7 +83,7 @@ public class Forecast
 public class ForecastDay
 {
     public string date;
-    public int date_epoch;
+    public long date_epoch;
     public Day day;
     public Astro astro;
     public List<Hour> hour;
@@ -107,50 +122,19 @@ public class Astro
     public string moonrise;
     public string moonset;
     public string moon_phase;
-    public int moon_illumination;
+    public string moon_illumination;
     public int is_moon_up;
     public int is_sun_up;
 }
 
 [Serializable]
-public class Hour
+public class Hour : BaseWeatherMetrics
 {
-    public int time_epoch;
+    public long time_epoch;
     public string time;
-    public float temp_c;
-    public float temp_f;
-    public int is_day;
-    public Condition condition;
-    public float wind_mph;
-    public float wind_kph;
-    public int wind_degree;
-    public string wind_dir;
-    public float pressure_mb;
-    public float pressure_in;
-    public float precip_mm;
-    public float precip_in;
     public float snow_cm;
-    public int humidity;
-    public int cloud;
-    public float feelslike_c;
-    public float feelslike_f;
-    public float windchill_c;
-    public float windchill_f;
-    public float heatindex_c;
-    public float heatindex_f;
-    public float dewpoint_c;
-    public float dewpoint_f;
     public int will_it_rain;
     public int chance_of_rain;
     public int will_it_snow;
     public int chance_of_snow;
-    public float vis_km;
-    public float vis_miles;
-    public float gust_mph;
-    public float gust_kph;
-    public float uv;
-    public float short_rad;
-    public float diff_rad;
-    public float dni;
-    public float gti;
 }
