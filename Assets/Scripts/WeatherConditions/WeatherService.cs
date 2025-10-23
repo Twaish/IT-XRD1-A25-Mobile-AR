@@ -355,8 +355,11 @@ public class WeatherService : MonoBehaviour
     if (request.result == UnityWebRequest.Result.Success)
     {
       string json = request.downloadHandler.text;
+      ForecastResponse forecastResponse = JsonUtility.FromJson<ForecastResponse>(json);
+
       hourlyWeatherSlider.SetWeatherJsonData(json);
       Debug.Log("WeatherAPI Response:\n" + json);
+      OnForecastUpdated?.Invoke(forecastResponse);
     }
     else
     {
