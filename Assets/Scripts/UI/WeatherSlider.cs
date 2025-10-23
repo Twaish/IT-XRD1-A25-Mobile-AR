@@ -13,29 +13,23 @@ public class WeatherSlider : MonoBehaviour
     public ParticleSystem rainParticleSystem;
     public ParticleSystem windParticleSystem;
     private WeatherData weatherData;
+    public ParticleSystem fogParticleSystem; 
     public SunLocationManager sunLocationManager;
+    public FogEffectHandler fogEffectHandler;
     public Transform Wind;
     private bool showingDaily = true;
     private int selectedDayIndex = 0;
     private void Awake()
     {
         if (weatherSlider != null)
-        {
             weatherSlider.onValueChanged.AddListener(OnSliderValueChanged);
-        }
         else
-        {
             Debug.LogError("Weather Slider is not assigned in the Inspector!");
-        }
 
         if (toggleButton != null)
-        {
             toggleButton.onClick.AddListener(ToggleMode);
-        }
         else
-        {
             Debug.LogError("Toggle Button is not assigned in the Inspector!");
-        }
     }
 
     public void SetWeatherJsonData(string jsonString)
@@ -69,15 +63,8 @@ public class WeatherSlider : MonoBehaviour
     private void ToggleMode()
     {
         showingDaily = !showingDaily;
-
-        if (showingDaily)
-        {
-            SetupDailyMode();
-        }
-        else
-        {
-            SetupHourlyMode(selectedDayIndex);
-        }
+        if (showingDaily) SetupDailyMode();
+        else SetupHourlyMode(selectedDayIndex);
     }
 
     private void SetupDailyMode()
@@ -86,7 +73,6 @@ public class WeatherSlider : MonoBehaviour
         weatherSlider.maxValue = weatherData.forecast.forecastday.Length - 1;
         weatherSlider.wholeNumbers = true;
         weatherSlider.value = selectedDayIndex;
-
         toggleButtonText.text = "Daily";
         UpdateWeatherDisplay((int)weatherSlider.value);
     }
@@ -103,7 +89,6 @@ public class WeatherSlider : MonoBehaviour
         weatherSlider.maxValue = weatherData.forecast.forecastday[dayIndex].hour.Length - 1;
         weatherSlider.wholeNumbers = true;
         weatherSlider.value = 0;
-
         toggleButtonText.text = "Hourly";
         UpdateWeatherDisplay((int)weatherSlider.value);
     }
@@ -116,7 +101,6 @@ public class WeatherSlider : MonoBehaviour
     private void UpdateRainEffect(float precipitationMm)
     {
         if (rainParticleSystem == null) return;
-
         var emission = rainParticleSystem.emission;
 
         if (precipitationMm <= 0f)
@@ -128,14 +112,13 @@ public class WeatherSlider : MonoBehaviour
         {
             float intensity = Mathf.Clamp(precipitationMm * 50f, 10f, 500f);
             emission.rateOverTime = intensity;
-
             if (!rainParticleSystem.isPlaying) rainParticleSystem.Play();
         }
     }
+
     private void UpdateWindEffect(float windKph)
     {
         if (windParticleSystem == null) return;
-
         var emission = windParticleSystem.emission;
         var main = windParticleSystem.main;
 
@@ -149,7 +132,6 @@ public class WeatherSlider : MonoBehaviour
             float intensity = Mathf.Clamp(windKph * 10f, 20f, 200f);
             emission.rateOverTime = intensity;
             main.startSpeed = windKph / 5f;
-
             if (!windParticleSystem.isPlaying) windParticleSystem.Play();
         }
     }
@@ -163,44 +145,40 @@ public class WeatherSlider : MonoBehaviour
         }
 
         float windDirectionDegrees;
+        float visibilityKm;
 
         if (showingDaily)
         {
             selectedDayIndex = index;
             var dayData = weatherData.forecast.forecastday[index];
-
             headerText.text = "Date: " + dayData.date;
             temperatureText.text = dayData.day.avgtemp_c + "°C";
             UpdateRainEffect(dayData.day.totalprecip_mm);
-            UpdateWindEffect(dayData.day.maxwind_kph); 
+            UpdateWindEffect(dayData.day.maxwind_kph);
+            visibilityKm = dayData.day.avgvis_km;
             windDirectionDegrees = dayData.day.maxwind_kph;
         }
         else
         {
             var dayData = weatherData.forecast.forecastday[selectedDayIndex];
-            if (index < 0 || index >= dayData.hour.Length)
-            {
-                Debug.LogError("Hour index out of range.");
-                return;
-            }
-
             var hourlyData = dayData.hour[index];
             headerText.text = "Time: " + hourlyData.time;
             temperatureText.text = hourlyData.temp_c + "°C";
             UpdateRainEffect(hourlyData.precip_mm);
-            UpdateWindEffect(hourlyData.wind_kph); 
+            UpdateWindEffect(hourlyData.wind_kph);
+            visibilityKm = hourlyData.vis_km;
             windDirectionDegrees = hourlyData.wind_degree;
         }
 
+        fogEffectHandler.UpdateFogByVisibility(visibilityKm);
+
         if (Wind != null)
-        {
             Wind.rotation = Quaternion.Euler(0, windDirectionDegrees, 0);
-        }
-        
+
         if (sunLocationManager != null)
         {
             DateTime targetTime;
-            var condition = "";
+            string condition;
 
             if (showingDaily)
             {
@@ -218,6 +196,7 @@ public class WeatherSlider : MonoBehaviour
             sunLocationManager.UpdateSunForTime(targetTime, condition, weatherData.location, weatherData.current.cloud);
         }
     }
+
     public void SwitchToDaily()
     {
         showingDaily = true;
@@ -232,13 +211,13 @@ public class WeatherSlider : MonoBehaviour
     
     public void SetForecast(WeatherData forecast)
     {
-    if (forecast == null || forecast.forecast == null || forecast.forecast.forecastday.Length == 0)
-    {
-        Debug.LogError("WeatherSlider: No forecast data provided.");
-        return;
-    }
+        if (forecast == null || forecast.forecast == null || forecast.forecast.forecastday.Length == 0)
+        {
+            Debug.LogError("WeatherSlider: No forecast data provided.");
+            return;
+        }
 
-    weatherData = forecast; 
-    SetupDailyMode();       
+        weatherData = forecast;
+        SetupDailyMode();
     }
 }
