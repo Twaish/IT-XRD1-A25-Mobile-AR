@@ -7222,6 +7222,7 @@ MonoBehaviour:
   windParticleSystem: {fileID: 1428318437}
   fogParticleSystem: {fileID: 67923131}
   sunLocationManager: {fileID: 2023496579}
+  fogEffectHandler: {fileID: 1589451190}
   Wind: {fileID: 983768937}
 --- !u!114 &2023496575
 MonoBehaviour:
@@ -7262,6 +7263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1716a49f4ecd6074ba842fef243dee10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeatherService
+  forecastDays: 3
   enableDebugMode: 0
   debugPrecipitation: 0
   debugWindKph: 0
@@ -7281,8 +7283,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CompassManager
   compassUI: {fileID: 0}
   compassText: {fileID: 103425804}
-  arSessionOrigin: {fileID: 0}
-  arCamera: {fileID: 0}
 --- !u!114 &2023496579
 MonoBehaviour:
   m_ObjectHideFlags: 0
