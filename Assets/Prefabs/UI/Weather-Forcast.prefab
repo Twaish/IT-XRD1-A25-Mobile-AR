@@ -1306,6 +1306,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3246963343555706261}
+  - component: {fileID: 42858176382315944}
+  - component: {fileID: 8712597012639683322}
   m_Layer: 5
   m_Name: Weather-Forcast
   m_TagString: Untagged
@@ -1337,6 +1339,51 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 960, y: 640}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &42858176382315944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3833338899183328331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19eaeb4649b7e45a08dd301ba5d8f370, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIToggle
+  uiToToggle: {fileID: 3833338899183328331}
+  uiToToggleBack: {fileID: 0}
+--- !u!114 &8712597012639683322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3833338899183328331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9f4b1b29fbe548fbbac4a8db7875464, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ForecastWeatherStats
+  weatherService: {fileID: 0}
+  day1Text: {fileID: 8414800568248131858}
+  temperatureMin1Text: {fileID: 5886769523843316576}
+  temperatureMax1Text: {fileID: 606059427772031307}
+  weather1Icon: {fileID: 6755325681994389518}
+  day2Text: {fileID: 2700427691312947595}
+  temperatureMin2Text: {fileID: 2204769384346865878}
+  temperatureMax2Text: {fileID: 1882830792219866550}
+  weather2Icon: {fileID: 598435709196105547}
+  day3Text: {fileID: 8221031060390925634}
+  temperatureMin3Text: {fileID: 3732587786574551909}
+  temperatureMax3Text: {fileID: 1216239288705778255}
+  weather3Icon: {fileID: 3715686283481511580}
+  sunnyIcon: {fileID: 21300000, guid: b800b398fef9ce84e877df40e47cd074, type: 3}
+  cloudyIcon: {fileID: 21300000, guid: 2475e009343d8bf4cb0782f10f19c737, type: 3}
+  rainyIcon: {fileID: 21300000, guid: 8e1cb4b3610400d41a759dab75657887, type: 3}
+  snowyIcon: {fileID: 21300000, guid: 5003d17f12a1bcf44aef446ac9be40fe, type: 3}
+  windyIcon: {fileID: 21300000, guid: 72d23295025b22745a2a01328ea840bd, type: 3}
+  windyThreshold: 25
 --- !u!1 &3902289325775270212
 GameObject:
   m_ObjectHideFlags: 0
