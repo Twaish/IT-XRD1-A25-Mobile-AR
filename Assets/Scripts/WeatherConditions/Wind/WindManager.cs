@@ -42,7 +42,7 @@ public class WindManager : MonoBehaviour
     float windSpeed = weather.current.wind_kph;
     float windDegree = weather.current.wind_degree;
 
-    if (windSpeed > 0.1f)
+    if (windSpeed > 0.8f)
     {
       windEffectHandler.SetActive(true);
       windEffectHandler.SetWind(windSpeed, windDegree);
