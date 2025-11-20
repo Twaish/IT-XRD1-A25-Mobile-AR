@@ -39,6 +39,7 @@ public class FogManager : MonoBehaviour
         if (weather == null) return;
 
         float visibility = weather.current.vis_km;
+        visibility = 0;
         fogEffectHandler.UpdateFogByVisibility(visibility);
         Debug.Log($"FogManager: Updated fog with visibility = {visibility} km");
     }
