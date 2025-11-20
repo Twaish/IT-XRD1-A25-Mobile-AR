@@ -90,4 +90,3 @@ public class CurrentWeatherUI : MonoBehaviour
         return cloudyIcon;
     }
 }
-

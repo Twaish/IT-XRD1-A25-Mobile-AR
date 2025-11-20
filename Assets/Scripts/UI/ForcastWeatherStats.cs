@@ -8,6 +8,11 @@ public class ForecastWeatherStats : MonoBehaviour
     [Header("References")]
     public WeatherService weatherService;
 
+    [Header("Location")]
+    public TextMeshProUGUI location;
+    public TextMeshProUGUI Weather_Stats_1;
+    public TextMeshProUGUI Weather_Stats_2;
+
     [Header("UI Elements")]
     public TextMeshProUGUI day1Text;
     public TextMeshProUGUI temperatureMin1Text;
@@ -61,6 +66,10 @@ public class ForecastWeatherStats : MonoBehaviour
             return;
         }
 
+        location.text = data.location.name;
+        Weather_Stats_1.text = $"Current temp: {data.current.temp_c:F0}°C";
+        Weather_Stats_2.text = $"Current humidity: {data.current.humidity:F0}%";
+
         // Handle each day safely
         if (days.Length > 0)
             SetDayUI(days[0], day1Text, temperatureMin1Text, temperatureMax1Text, weather1Icon, 0);
@@ -89,9 +98,9 @@ public class ForecastWeatherStats : MonoBehaviour
         }
 
         if (minTempText != null)
-            minTempText.text = $"{dayData.day.mintemp_c:F0}°C";
+            minTempText.text = $"{dayData.day.mintemp_c:F0}";
         if (maxTempText != null)
-            maxTempText.text = $"{dayData.day.maxtemp_c:F0}°C";
+            maxTempText.text = $"{dayData.day.maxtemp_c:F0}";
 
         string condition = dayData.day.condition.text.ToLower();
         float windKph = dayData.day.maxwind_kph;

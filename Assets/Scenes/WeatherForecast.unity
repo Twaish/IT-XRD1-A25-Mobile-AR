@@ -5925,6 +5925,18 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   lightOverride: {fileID: 0}
+--- !u!114 &517506571 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 385256861149486029, guid: 51512f3a34bdf452bbe9ea3c1e230ae8,
+    type: 3}
+  m_PrefabInstance: {fileID: 6078757625505507104}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!114 &571459177 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 942332192965854330, guid: 18c100e88d9f9422d928a2b3502057b7,
@@ -6938,6 +6950,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FogEffectHandler
   fogParticleSystem: {fileID: 67923131}
+--- !u!114 &1603986155 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8780362735681705555, guid: 51512f3a34bdf452bbe9ea3c1e230ae8,
+    type: 3}
+  m_PrefabInstance: {fileID: 6078757625505507104}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1001 &1923077189
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7041,6 +7065,18 @@ Camera:
     type: 3}
   m_PrefabInstance: {fileID: 1923077189}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1976604613 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7751718140290038428, guid: 51512f3a34bdf452bbe9ea3c1e230ae8,
+    type: 3}
+  m_PrefabInstance: {fileID: 6078757625505507104}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &2013816763
 GameObject:
   m_ObjectHideFlags: 0
@@ -7437,6 +7473,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: Weather-Forcast
       objectReference: {fileID: 0}
+    - target: {fileID: 8712597012639683322, guid: 51512f3a34bdf452bbe9ea3c1e230ae8,
+        type: 3}
+      propertyPath: location
+      value: 
+      objectReference: {fileID: 1603986155}
+    - target: {fileID: 8712597012639683322, guid: 51512f3a34bdf452bbe9ea3c1e230ae8,
+        type: 3}
+      propertyPath: weatherService
+      value: 
+      objectReference: {fileID: 2023496577}
+    - target: {fileID: 8712597012639683322, guid: 51512f3a34bdf452bbe9ea3c1e230ae8,
+        type: 3}
+      propertyPath: Weather_Stats_1
+      value: 
+      objectReference: {fileID: 1976604613}
+    - target: {fileID: 8712597012639683322, guid: 51512f3a34bdf452bbe9ea3c1e230ae8,
+        type: 3}
+      propertyPath: Weather_Stats_2
+      value: 
+      objectReference: {fileID: 517506571}
+    - target: {fileID: 8712597012639683322, guid: 51512f3a34bdf452bbe9ea3c1e230ae8,
+        type: 3}
+      propertyPath: weatherUIManager
+      value: 
+      objectReference: {fileID: 2023496572}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
