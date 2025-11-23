@@ -7,8 +7,14 @@ Twaish - 331188 Dan V. Nguyen
 Qraktor - 331850 Thomas E. Kastberg
 
 ## Blog Posts
-- [#1 Weather Visualizer](./blogposts/1%20Weather%20Visualizer.md)
-- [#2 First Milestone](./blogposts/2%20First%20Milestone.md)
+### Mobile AR
+- [#1 Weather Visualizer](./blogposts/AR/1%20Weather%20Visualizer.md)
+- [#2 First Milestone](./blogposts/AR/2%20First%20Milestone.md)
+
+### HMD VR
+- [#1 Terminator - First Milestone](./blogposts/VR/1%20Terminator%20-%20First%20Milestone.md)
+- [#2 Terminator - Second Milestone](./blogposts/VR/2%20Terminator%20-%20Second%20Milestone.md)
+- [#3 Terminator - Third Milestone](./blogposts/VR/3%20Terminator%20-%20Third%20Milestone.md)
 
 ## Credits
 ### Shaders & Effects
