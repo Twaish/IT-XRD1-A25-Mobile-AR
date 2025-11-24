@@ -54,7 +54,7 @@ Alexander
 
 The grounded enemies are custom made robots with a weapon, they use navmesh for their AI to move and will move towards the player when in range and stop at a certain distance where they will try to hit the player with their light saber if the player moves towards them as well the enemies will back up to try and retain some distance from the player, though this is done with transform as the nav agent did not seem to want to do so and it still adheres to collisions, and does replicate as one would blindly move back as they do. The grounded enemies are made to be sliceable; this means when sliced by the player's sword they will split and cease to function and fall to the ground in pieces.
 
-### Grounded enemies weapon
+### Grounded enemies weapon ✓
 Alexander
 
 The grounded enemies will have weapons. Currently they have a light saber like the player that they swing down to try and hit the player. Here the weapons have a mesh so we can detect collisions with either the player or the players weapons. 
