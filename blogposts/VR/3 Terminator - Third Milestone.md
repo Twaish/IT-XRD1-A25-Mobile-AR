@@ -36,11 +36,15 @@ We have also made our lightsabers with default unity objects where we have added
 The projectiles are simple capsules with a custom texture.
 
 ## Robot pathing (nav mesh) ✓
-Dan
+Dan Alexander
 
-To avoid making the robot simply pass through walls directly towards the player, we can create a pathing environment (nav mesh). This was easy to implement as you simply had to add a Nav Mesh Surface component to the environment and make it target a certain layer for it to compute it. 
+To avoid making the robot try to simply pass through walls directly towards the player, we create a pathing environment (nav mesh). This was easy to implement as you simply had to add a Nav Mesh Surface component to the environment and make it target a certain layer for it to compute it. 
 
 There was an issue with the robots walking through certain walls which was fixed by assigning the wall the layer used for baking the nav mesh pathing environment.
+
+The robots are assigned to be the nav agents and therefore no longer use transform to move, but the nav mesh. Though there was a problem with making the robots retreat when the player came too close using nav mesh so that is the only part of their movement that still uses transform on the enemies and force them back. 
+
+Though logic wise this does make somewhat sense as they can still not go through objects but might back into them, and this does somewhat mimic a person blindly moving backwards as they do.
 
 
 ## Points for slicing ✓
@@ -51,7 +55,7 @@ Because our script for slicing objects in the game emits an event when an object
 A drone could die from a deflected laser or, like the robot, be sliced in half. Using an event based approach, each enemy and each spawner would subsequently emit an event when this happens for a global score manager to pick up and add points using our point system. 
 
 
-## Player’s hit box + Game over realitycheck ✓X
+## Player’s hit box + Game over realitycheck (✓)
 Jonas Dan
 
 We quickly found that a fixed hitbox (capsule collision) attached directly to the player is not a great solution when the player has a lot of free movement. Often the shots got “unfarily” detected as a hit, so we made a script to adjust for the player's movement in VR e.g. height on runtime, so if the player crouches the hitbox will better follow the player. This hitbox will overlap the existing from the XR rig since it cannot be adjusted the same way. Another problem was the hitbox often hitting the ground and the controllers causing lots of collision calls, while this was solved by a simple tag solution.
