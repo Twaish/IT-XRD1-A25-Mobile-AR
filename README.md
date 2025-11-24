@@ -7,9 +7,12 @@ Twaish - 331188 Dan V. Nguyen
 Qraktor - 331850 Thomas E. Kastberg
 
 ## Blog Posts
+- [The What and Why's of XR](./blogposts/The%20What%20and%20Why’s%20of%20XR.md)
+
 ### Mobile AR
-- [#1 Weather Visualizer](./blogposts/AR/1%20Weather%20Visualizer.md)
-- [#2 First Milestone](./blogposts/AR/2%20First%20Milestone.md)
+- [#1 Weather Visualizer - First Milestone](./blogposts/AR/1%20Weather%20Visualizer%20-%20First%20Milestone.md)
+- [#2 Weather Visualizer - Second Milestone](./blogposts/AR/2%20Weather%20Visualizer%20-%20Second%20Milestone.md)
+- [#3 Weather Visualizer - Third Milestone](./blogposts/AR/3%20Weather%20Visualizer%20-%20Third%20Milestone.md)
 
 ### HMD VR
 - [#1 Terminator - First Milestone](./blogposts/VR/1%20Terminator%20-%20First%20Milestone.md)
