@@ -21,6 +21,12 @@ Qraktor - 331850 Thomas E. Kastberg
 - [#3 Terminator - Third Milestone](./blogposts/VR/3%20Terminator%20-%20Third%20Milestone.md)
 - [Video Demonstration](https://www.youtube.com/watch?v=NQ2B3_X8Sdo)
 
+## Personal Reflections
+- [#1 Alexander](./personalreflections/alexander.md)
+- [#2 Dan](./personalreflections/dan.md)
+- [#3 Jonas](./personalreflections/jonas.md)
+- [#3 Thomas](./personalreflections/thomas.md)
+
 ## Credits
 ### Shaders & Effects
 - [Full Opaque Rain by Roman CHACORNAC](https://assetstore.unity.com/packages/vfx/full-opaque-rain-312563)
