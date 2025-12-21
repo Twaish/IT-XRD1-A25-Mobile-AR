@@ -25,7 +25,7 @@ Qraktor - 331850 Thomas E. Kastberg
 - [#1 Alexander](./personalreflections/alexander.md)
 - [#2 Dan](./personalreflections/dan.md)
 - [#3 Jonas](./personalreflections/jonas.md)
-- [#3 Thomas](./personalreflections/thomas.md)
+- [#4 Thomas](./personalreflections/thomas.md)
 
 ## Credits
 ### Shaders & Effects
