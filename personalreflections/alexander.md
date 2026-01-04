@@ -6,7 +6,7 @@
 - Toggled sun based on sunset and sunrise.
 - Helped others if needed.
 
-# Removed and Partial/Unsuccessful contributions:
+#### Removed and Partial/Unsuccessful contributions:
 - Rain effect.
 - Skybox that removed/replaced the roof.
 - Compass/magnetometer for real world orientation.
@@ -34,8 +34,9 @@ One of my main focuses was the sun. I found some different API’s, the best fit
 - Mesh to shield for parrying.
 - Helped others.
 
-# Removed and Unsuccessful contributions:
+#### Removed and Unsuccessful contributions:
 - Other asset
 
 For the HMD(Head-mounted display) project, we had gotten more used to Unity, and task separating and delegating. We mainly used our own virtual headsets, therefore, able to work home and at school. We used Oculus Quest 1 and Meta Quest 3, both are HMD utilizing Inside-out tracking. They are easier to bring with us. There were problems with the Meta Quest 3, mainly wifi, laptop resource limitation, and others with the Meta Horizon app.
 During development I mainly worked on grounded melee enemies, and spent a lot of time improving different aspects of them. They started as simple floating capsules, I used the Unity transform to manipulate them towards the player's XR Rig. I implemented movement behavior to ensure proper spacing from the player, based on the player movement and distance. I copied and modified the light saber for the enemies, made an attack script, so that they became able to swing at the player. I integrated it with the health system and player collider later. I also made behavior for the sword colliding with the player's sword or shield. Later I made a stun effect for the robots, both functional and visual. I made a simple design for them, so they were no longer capsules. I drew inspiration from R2D2 (Star Wars). I had an alternative inspired by Daleks (Doctor Who). I made the assets, textures, materials manually, through paint and combining Unity objects. I made an office building/sky scaper, before we began importing the assets. I later replaced the movement logic with the inbuilt navmesh in Unity. I made the robots' agents, baked the ground for a walkable surface, and automatically figured out how to navigate around objects. The transform would try to force through obstacles. I made a robot spawner repurposed and modified the drone spawner. I made scripts for defect robots and drones, for our asylum/reality check level. Made the drone spin, froze and dismantled the robots, gave them heartbeat like blinking eyes. I helped with slight modifications for some of our other elements, I made the shields regenerate slowly over time, even when not destroyed, made the shield work with and able to collide and parry enemies sword swings and helped other times as needed.
+
