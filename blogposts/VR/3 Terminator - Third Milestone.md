@@ -5,13 +5,13 @@ Alexander
 If the player blocks the sword as it attacks it will immediately begin to draw back its sword and become stunned. Stunned means that the enemy will cease to move or attack for a short amount of time defined in the unity inspector. A visual change will also take place so it is possible for the player to see when an enemy is stunned.
 
 ## Shield ✓
-Jonas Dan
+Jonas Dan Thomas
 
 Since the shield’s being held in VR, it’s important to find the right size and make it somewhat transparent to see the shots deflected. The deflection on the saber is no longer needed as it would be better to have that on a shield and it makes more sense and fixes issues with the two deflect zones for the saber that overlaps which was not reliable for separate deflection detection.
 
-It’s inspired from Overwatch and will have an amount of hit points before recharging is needed. During this, the player must use their real movement to avoid being hit, go around map obstacles or use the saber to cut the lasers/enemies.
+We made a custom model and shader for the shield. The design is inspired from Overwatch and will have an amount of hit points before recharging is needed. During this, the player must use their real movement to avoid being hit, go around map obstacles or use the saber to cut the lasers/enemies.
 
-The size of the shield, regeneration time and hitpoints  is uncertain, since it depends on how difficult the increase (enemy spawns) curve is going to be for the final game. The shield can be grabbed using the XR grab interactable like the lightsaber. The shield can still be locked into the user's hand or flown around using the force (The comes with the XR rig controller preset) letting you push enemies away.
+The size of the shield, regeneration time and hitpoints  is uncertain, since it depends on how difficult the increase (enemy spawns) curve is going to be for the final game. The shield can be grabbed using the XR grab interactable like the lightsaber. The shield can still be locked into the user's hand or flown around using the force (The comes with the XR rig controller preset) letting you push enemies away. 
 
 ## Added various textures and particles ✓
 Alexander
