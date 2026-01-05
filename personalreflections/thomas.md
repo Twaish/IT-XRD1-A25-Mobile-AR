@@ -28,3 +28,5 @@ For instance, I helped a bit with the particle system to make the fog. For the U
 - Laser projectiles
 - Game environment
 - a little UI
+
+During the the development of our VR project I had a lot of fun experimenting with shader, and i am very proud of the shield i made the model of the shield itself is made using probuilder, and the shader is using various elements like a hexagon texture found on https://www.cgbookcase.com/textures/white-hexagonal-tiles-01, a fresnel effect for an edge glow and UV distortion for at wave effect.
