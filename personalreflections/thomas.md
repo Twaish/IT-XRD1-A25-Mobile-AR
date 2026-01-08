@@ -30,4 +30,8 @@ For instance, I helped a bit with the particle system to make the fog. For the U
 - a little UI
 
 During the the development of our VR project I had a lot of fun experimenting with shaders, and i am very proud of the shield i made the model of the shield itself is made using probuilder, and the shader is using various elements like a hexagon texture found on https://www.cgbookcase.com/textures/white-hexagonal-tiles-01, a fresnel effect for an edge glow and UV distortion for at wave effect.
+We had a lot of issues working around the pre-made XR rig in unity. It would probably have been harder to build it ourselves, but since we didn’t we also didn’t know how it’s inner workings. An example would be when we tried to change the scene, but keep the rig. the rig would not be moved to 0.0.0 if it was with the unity playview, but if it was moved in VR i worked for some reason.
+We also faced some weird framerate issues, where some collisions didn’t work on my old mac because of low frame rate, but worked fine when we tried it on the headset. I spent an annoying amount of time working on the hit detection, even though it works well enough on the headset.
+
+
 
